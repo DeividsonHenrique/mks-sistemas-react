@@ -9,9 +9,18 @@ import Produtos from './components/Produtos'
 function App() {
 
   const [isCheckOutVisible, setIsCheckOutVisible] = useState(false);
+  const [cartItems , setCartItems] = useState([]);
 
   const handleCartClick = () => {
-    setIsCheckOutVisible(!isCheckOutVisible);
+    setIsCheckOutVisible(true);
+  }
+
+  const handleCloseClick = () => {
+    setIsCheckOutVisible(false);
+  }
+
+  const handleAddToCart = (product) => {
+    setCartItem([...cartItem, product]);
   }
   return (
     <>
@@ -19,7 +28,7 @@ function App() {
       <Header onCartClick={handleCartClick}/>
       <Produtos/>
       <Footer/>
-      <CheckOut isVisible={isCheckOutVisible} onClose={handleCartClick}/>
+      <CheckOut isVisible={isCheckOutVisible} onClose={handleCloseClick} cartItems={cartItems}/>
     </>
   )
 }

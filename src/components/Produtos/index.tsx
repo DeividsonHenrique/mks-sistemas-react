@@ -72,21 +72,27 @@ const Btn = styled.button`
     cursor: pointer;
 `
 
-function Produtos() {
-  const [produtos, setProdutos] = useState([]);
+function Produtos({onAddToCart}) {
+  const [products, setProducts] = useState([]);
 
   useEffect(() => {
-    const fetchProdutos = async () => {
-      const response = await fetch(
-        "https://mks-frontend-challenge-04811e8151e6.herokuapp.com/api/v1/products?page=1&rows=8&sortBy=id&orderBy=ASC"
-      );
-      const data = await response.json();
-      setProdutos(data.products);
-    };
-
-    fetchProdutos();
+    fetch(
+        "https://mks-frontend-challenge-04811e8151e6.herokuapp.com/api/v1/products?page=1&rows=8&sortBy=id&orderBy=ASC")
+      .then((response) => response.json())
+      .then((data) => setProducts(data.products));
   }, []);
 
+
+  const handleBuyClick = (product) => {
+      const productToAdd = {
+          id: product.id,
+          name: product.name,
+          price: product.price,
+          photo: product.photo,
+          quantity: 1,
+      }
+      onAddToCart(productToAdd)
+  }
  
 
   const formatPrice = (price) => {
@@ -95,17 +101,17 @@ function Produtos() {
 
   return (
     <>
-      {produtos.map((p) => (
-        <Card key={p.id} >
+      {products.map((product) => (
+        <Card key={product.id} >
           <PhotoDiv>
-            <Image src={p.photo} alt={p.name} />
+            <Image src={product.photo} alt={product.name} />
           </PhotoDiv>
           <Info>
-            <h1>{p.name}</h1>
-            <span>R${formatPrice(p.price)}</span>
+            <h1>{product.name}</h1>
+            <span>R${formatPrice(product.price)}</span>
           </Info>
-          <Description>{p.description}</Description>
-          <Btn>Comprar</Btn>
+          <Description>{product.description}</Description>
+          <Btn onClick={() => handleBuyClick(product)}>Comprar</Btn>
         </Card>
       ))}
     </>
