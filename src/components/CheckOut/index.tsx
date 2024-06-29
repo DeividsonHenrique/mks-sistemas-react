@@ -131,8 +131,31 @@ const RemoveItem = styled(IoIosCloseCircle)`
   cursor: pointer;
   background-color: transparent;
 `
+
+const QuantityDiv = styled.div`
+  display: flex;
+  border: 1px solid #000000;
+  border-radius: 5px;
+  background-color: transparent;
+  overflow: hidden;
+`
+
 const QuantityButton = styled.button`
-  margin: 0 5px;
+  padding: 0 5px;
+  outline: none;
+  border: none;
+  cursor: pointer;
+
+  &:first-child {
+    border-right: 1px solid #3333;
+    margin-right: 5px;
+  }
+
+  &:last-child {
+    border-left: 1px solid #3333;
+    margin-left: 5px;
+  }
+  
 `;
 
 const Empty = styled.p`
@@ -169,11 +192,11 @@ function CheckOut({ isVisible, onClose, cartItems, onRemoveItem, onIncrementQuan
               
               <img src={item.photo} alt={item.name} width="50" />
                 <p>{item.name}</p>
-                <div>
+                <QuantityDiv>
                 <QuantityButton onClick={() => onDecrementQuantity(item.id)}>-</QuantityButton>
                 <span>{item.quantity}</span>
                 <QuantityButton onClick={() => onIncrementQuantity(item.id)}>+</QuantityButton>
-                </div>
+                </QuantityDiv>
                 <p>R${formatPrice(item.price)}</p>
                 <RemoveItem onClick={() => onRemoveItem(item.id)} />
             </li>
@@ -184,7 +207,7 @@ function CheckOut({ isVisible, onClose, cartItems, onRemoveItem, onIncrementQuan
         </Products>
 
         <Valor>
-          <p>Total</p>
+          <p>Total:</p>
           <p>R${formatPrice(cartItems.reduce((total, item) => total + item.price * item.quantity, 0))}</p>
         </Valor>
 
