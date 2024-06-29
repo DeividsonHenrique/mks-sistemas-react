@@ -7,6 +7,7 @@ function CheckOut({ isvisible, onClose, cartItems, onRemoveItem, onIncrementQuan
   const formatPrice = (price: string) => {
     return parseInt(price, 10)
   };
+  
 
   return (
     <>
