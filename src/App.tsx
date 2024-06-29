@@ -3,7 +3,7 @@ import Header from "./components/Header";
 import CheckOut from "./components/CheckOut";
 import Produtos from "./components/Produtos";
 import Footer from "./components/Footer";
-import GloblaStyle from "./styles/styles";
+
 
 interface Product {
   id: number;
@@ -74,7 +74,7 @@ const App: React.FC = () => {
 
   return (
     <>
-      <GloblaStyle />
+      
       <Header onCartClick={handleCartClick} cartCount={cartCount} />
       <Produtos onAddToCart={handleAddToCart} />
       <CheckOut
