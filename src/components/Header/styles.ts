@@ -2,7 +2,7 @@ import { TiShoppingCart as Cart } from "react-icons/ti";
 import styled from "styled-components";
 
 export const Head = styled.div`
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   display: flex;
@@ -12,6 +12,7 @@ export const Head = styled.div`
   height: 70px;
   background-color: #0f52ba;
   padding: 0 20px;
+  z-index: 1000;
 `;
 
 export const Logo = styled.div`

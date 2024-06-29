@@ -5,14 +5,23 @@ export const Check = styled.div<{ isvisible: boolean }>`
   position: fixed;
   top: 0;
   right: 0;
-  width: 30%;
+  width: 500px;
   height: 100%;
   background: #0f52ba;
   z-index: 10000;
   padding: 30px;
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-  transform: ${({ isvisible }) => (isvisible ? 'translateX(0)' : 'translateX(100%)')};
+  transform: ${({ isvisible }) =>
+    isvisible ? "translateX(0)" : "translateX(100%)"};
   transition: transform 0.5s ease-in-out;
+
+  @media (max-width: 600px) {
+    width: 400px;
+  }
+
+  @media (max-width: 480px) {
+    width: 90%;
+  }
 `;
 
 export const CloseBtn = styled(IoIosCloseCircle)`
@@ -85,8 +94,6 @@ export const CardDiv = styled.div`
   background-color: transparent;
   margin: 10px auto;
 
-
-
   ul {
     margin-top: 30px;
     width: 100%;
@@ -108,6 +115,8 @@ export const CardDiv = styled.div`
 
     p:nth-child(2) {
       max-width: 100px;
+      background-color: transparent;
+      text-align: center;
     }
 
     p:nth-child(3) {
@@ -119,8 +128,38 @@ export const CardDiv = styled.div`
       font-weight: 700;
     }
   }
-`;
 
+  @media (max-width: 600px) {
+    width: 90%;
+  }
+
+  @media (max-width: 480px) {
+    width: 90%;
+    height: auto;
+
+    li {
+      flex-direction: column;
+
+      img {
+        width: 150px;
+      }
+
+      p:nth-child(2) {
+        max-width: 100%;
+        padding: 10px 0px;
+        text-align: center;
+        font-weight: 400;
+        font-size: 1.2rem;
+      }
+
+      span {
+        line-height: 25px;
+        font-weight: 700;
+        padding: 0 5px;
+      }
+    }
+  }
+`;
 
 export const RemoveItem = styled(IoIosCloseCircle)`
   position: absolute;
@@ -130,7 +169,7 @@ export const RemoveItem = styled(IoIosCloseCircle)`
   border-radius: 50%;
   cursor: pointer;
   background-color: transparent;
-`
+`;
 
 export const QuantityDiv = styled.div`
   display: flex;
@@ -138,7 +177,12 @@ export const QuantityDiv = styled.div`
   border-radius: 5px;
   background-color: transparent;
   overflow: hidden;
-`
+
+  @media (max-width: 480px) {
+    height: 30px;
+    margin-bottom: 10px;
+  }
+`;
 
 export const QuantityButton = styled.button`
   padding: 0 5px;
@@ -155,7 +199,11 @@ export const QuantityButton = styled.button`
     border-left: 1px solid #3333;
     margin-left: 5px;
   }
-  
+
+  @media (max-width: 480px){
+    width: 30px;
+  }
+}
 `;
 
 export const Empty = styled.p`
@@ -163,4 +211,4 @@ export const Empty = styled.p`
   color: #ffffff;
   background-color: transparent;
   font-size: 1.2rem;
-`
+`;

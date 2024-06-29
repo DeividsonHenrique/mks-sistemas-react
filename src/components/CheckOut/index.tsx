@@ -1,8 +1,20 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { Check, Head, CloseBtn, Products, CardDiv, Empty, QuantityDiv, QuantityButton, RemoveItem, Valor, Btn} from "./styles";
+import {
+  Check,
+  Head,
+  CloseBtn,
+  Products,
+  CardDiv,
+  Empty,
+  QuantityDiv,
+  QuantityButton,
+  RemoveItem,
+  Valor,
+  Btn,
+} from "./styles";
 
 const formatPrice = (price: string) => {
-  return parseInt(price, 10)
+  return parseInt(price, 10);
 };
 
 interface Product {
@@ -45,25 +57,32 @@ const CheckOut: React.FC<CheckProps> = ({
         <Products>
           <CardDiv>
             {cartItems.length === 0 ? (
-        <Empty>O carrinho está vazio</Empty>
-      ) : (
-        <ul>
-          {cartItems.map((item: any) => (
-            <li key={item.id}>
-              
-              <img src={item.photo} alt="" width="50" />
-                <p>{item.name}</p>
-                <QuantityDiv>
-                <QuantityButton onClick={() => onDecrementQuantity(item.id)}>-</QuantityButton>
-                <span>{item.quantity}</span>
-                <QuantityButton onClick={() => onIncrementQuantity(item.id)}>+</QuantityButton>
-                </QuantityDiv>
-                <p>R${formatPrice(item.price)}</p>
-                <RemoveItem onClick={() => onRemoveItem(item.id)} />
-            </li>
-          ))}
-        </ul>
-      )}
+              <Empty>O carrinho está vazio</Empty>
+            ) : (
+              <ul>
+                {cartItems.map((item: any) => (
+                  <li key={item.id}>
+                    <img src={item.photo} alt="" width="50" />
+                    <p>{item.name}</p>
+                    <QuantityDiv>
+                      <QuantityButton
+                        onClick={() => onDecrementQuantity(item.id)}
+                      >
+                        -
+                      </QuantityButton>
+                      <span>{item.quantity}</span>
+                      <QuantityButton
+                        onClick={() => onIncrementQuantity(item.id)}
+                      >
+                        +
+                      </QuantityButton>
+                    </QuantityDiv>
+                    <p>R${formatPrice(item.price)}</p>
+                    <RemoveItem onClick={() => onRemoveItem(item.id)} />
+                  </li>
+                ))}
+              </ul>
+            )}
           </CardDiv>
         </Products>
 
@@ -76,6 +95,6 @@ const CheckOut: React.FC<CheckProps> = ({
       </Check>
     </>
   );
-}
+};
 
 export default CheckOut;
