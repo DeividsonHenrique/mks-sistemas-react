@@ -67,7 +67,7 @@ const CheckOut: React.FC<CheckProps> = ({
 
         <Valor>
           <p>Total:</p>
-          
+          <p>R${formatPrice (cartItems.reduce((acc, item) => acc + item.price * item.quantity, 0))}</p>
         </Valor>
 
         <Btn>Finalizar Compra</Btn>
