@@ -80,21 +80,74 @@ const Products = styled.div`
 `;
 
 const CardDiv = styled.div`
-  position: relative;
-  height: 100px;
+  height: auto;
   width: 90%;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around;
-  align-items: center;
-  background-color: #ffffff;
-  border-radius: 10px;
+  background-color: transparent;
   margin: 10px auto;
-  overflow: hidden;
-  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+
+
+
+  ul {
+    margin-top: 30px;
+    width: 100%;
+    background-color: transparent;
+  }
+
+  li {
+    position: relative;
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    flex-direction: row;
+    align-items: center;
+    list-style: none;
+    background-color: #ffffff;
+    margin: 20px 0;
+    padding: 20px 0px;
+    border-radius: 10px;
+
+    p:nth-child(2) {
+      max-width: 100px;
+    }
+
+    p:nth-child(3) {
+      max-width: 50px;
+    }
+
+    p:nth-child(4) {
+      max-width: 100px;
+      font-weight: 700;
+    }
+  }
 `;
 
-function CheckOut({ isVisible, onClose, cartItems }) {
+
+const RemoveItem = styled(IoIosCloseCircle)`
+  position: absolute;
+  top: -5px;
+  right: -5px;
+  font-size: 1.5rem;
+  border-radius: 50%;
+  cursor: pointer;
+  background-color: transparent;
+`
+const QuantityButton = styled.button`
+  margin: 0 5px;
+`;
+
+const Empty = styled.p`
+  text-align: center;
+  color: #ffffff;
+  background-color: transparent;
+  font-size: 1.2rem;
+`
+
+function CheckOut({ isVisible, onClose, cartItems, onRemoveItem, onIncrementQuantity, onDecrementQuantity }) {
+
+  const formatPrice = (price) => {
+    return parseInt(price, 10)
+  };
+
   return (
     <>
       <Check isVisible={isVisible}>
@@ -107,19 +160,22 @@ function CheckOut({ isVisible, onClose, cartItems }) {
 
         <Products>
           <CardDiv>
-            <h2>Checkout</h2>
             {cartItems.length === 0 ? (
-        <p>O carrinho está vazio</p>
+        <Empty>O carrinho está vazio</Empty>
       ) : (
         <ul>
           {cartItems.map(item => (
             <li key={item.id}>
-              <img src={item.image} alt={item.name} width="50" />
-              <div>
+              
+              <img src={item.photo} alt={item.name} width="50" />
                 <p>{item.name}</p>
-                <p>Quantidade: {item.quantity}</p>
-                <p>Preço: {item.price}</p>
-              </div>
+                <div>
+                <QuantityButton onClick={() => onDecrementQuantity(item.id)}>-</QuantityButton>
+                <span>{item.quantity}</span>
+                <QuantityButton onClick={() => onIncrementQuantity(item.id)}>+</QuantityButton>
+                </div>
+                <p>R${formatPrice(item.price)}</p>
+                <RemoveItem onClick={() => onRemoveItem(item.id)} />
             </li>
           ))}
         </ul>
@@ -129,7 +185,7 @@ function CheckOut({ isVisible, onClose, cartItems }) {
 
         <Valor>
           <p>Total</p>
-          <p>R$000</p>
+          <p>R${formatPrice(cartItems.reduce((total, item) => total + item.price * item.quantity, 0))}</p>
         </Valor>
 
         <Btn>Finalizar Compra</Btn>

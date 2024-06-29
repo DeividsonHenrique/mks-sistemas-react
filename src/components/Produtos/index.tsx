@@ -83,17 +83,6 @@ function Produtos({onAddToCart}) {
   }, []);
 
 
-  const handleBuyClick = (product) => {
-      const productToAdd = {
-          id: product.id,
-          name: product.name,
-          price: product.price,
-          photo: product.photo,
-          quantity: 1,
-      }
-      onAddToCart(productToAdd)
-  }
- 
 
   const formatPrice = (price) => {
     return parseInt(price, 10)
@@ -111,7 +100,7 @@ function Produtos({onAddToCart}) {
             <span>R${formatPrice(product.price)}</span>
           </Info>
           <Description>{product.description}</Description>
-          <Btn onClick={() => handleBuyClick(product)}>Comprar</Btn>
+          <Btn onClick={() => onAddToCart(product)}>Comprar</Btn>
         </Card>
       ))}
     </>

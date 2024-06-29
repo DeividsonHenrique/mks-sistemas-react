@@ -8,27 +8,56 @@ import Produtos from './components/Produtos'
 
 function App() {
 
-  const [isCheckOutVisible, setIsCheckOutVisible] = useState(false);
+  const [isCheckoutVisible, setCheckoutVisible] = useState(false);
   const [cartItems , setCartItems] = useState([]);
 
   const handleCartClick = () => {
-    setIsCheckOutVisible(true);
+    setCheckoutVisible(true);
   }
 
   const handleCloseClick = () => {
-    setIsCheckOutVisible(false);
+    setCheckoutVisible(false);
   }
 
   const handleAddToCart = (product) => {
-    setCartItem([...cartItem, product]);
+    setCartItems((prevCartItems) => {
+      const itemExists = prevCartItems.find((item) => item.id === product.id);
+      if (itemExists) {
+        return prevCartItems.map((item) =>
+          item.id === product.id ? { ...item, quantity: item.quantity + 1 } : item
+        );
+      }
+      return [...prevCartItems, { ...product, quantity: 1 }];
+    });
+  };
+
+
+  const handleRemoveItem = (id) =>{
+    setCartItems(cartItems.filter(item => item.id !== id))
   }
+
+
+  const handleIncrementQuantity = (id) => {
+    setCartItems(cartItems.map(item => item.id === id ? {...item, quantity: item.quantity + 1} : item))
+  }
+
+  const handleDecrementQuantity = (id) => {
+    setCartItems(cartItems.map(item => item.id === id ? {...item, quantity: item.quantity - 1} : item))
+  }
+
   return (
     <>
       
-      <Header onCartClick={handleCartClick}/>
-      <Produtos/>
+      <Header onCartClick={handleCartClick} handleCartClick={handleCartClick}/>
+      <Produtos onAddToCart={handleAddToCart}/>
       <Footer/>
-      <CheckOut isVisible={isCheckOutVisible} onClose={handleCloseClick} cartItems={cartItems}/>
+      <CheckOut isVisible={isCheckoutVisible}
+       onClose={handleCloseClick}
+        cartItems={cartItems}
+         onRemoveItem={handleRemoveItem}
+         onDecrementQuantity={handleDecrementQuantity}
+         onIncrementQuantity={handleIncrementQuantity}
+         />
     </>
   )
 }
