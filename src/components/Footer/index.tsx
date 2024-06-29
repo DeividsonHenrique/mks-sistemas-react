@@ -1,8 +1,9 @@
 import styled from "styled-components";
 
 const FooterDiv = styled.div`
-    position: absolute;
-    bottom: 0;
+    position: fixed;
+    bottom: 0px;
+    left: 0px;
     width: 100%;
     display: flex;
     justify-content: center;
@@ -10,7 +11,7 @@ const FooterDiv = styled.div`
     background-color: #EEEEEE;
     color: white;
     height: 40px;
-
+    margin-top: 20px;
     p{
         font-size: 0.8rem;
         background-color: transparent;

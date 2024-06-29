@@ -20,6 +20,7 @@ interface CheckProps {
   onRemoveItem: (id: number) => void;
   onIncrementQuantity: (id: number) => void;
   onDecrementQuantity: (id: number) => void;
+  total: number;
 }
 
 const CheckOut: React.FC<CheckProps> = ({
@@ -29,6 +30,7 @@ const CheckOut: React.FC<CheckProps> = ({
   onRemoveItem,
   onIncrementQuantity,
   onDecrementQuantity,
+  total,
 }) => {
   return (
     <>
@@ -67,7 +69,7 @@ const CheckOut: React.FC<CheckProps> = ({
 
         <Valor>
           <p>Total:</p>
-          {/* <p>R${formatPrice (cartItems.reduce((acc, item) => acc + item.price * item.quantity, 0))}</p> */}
+          <p>R$:{formatPrice(total.toFixed(2))}</p>
         </Valor>
 
         <Btn>Finalizar Compra</Btn>

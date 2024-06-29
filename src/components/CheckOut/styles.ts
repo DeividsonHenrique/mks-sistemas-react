@@ -5,7 +5,7 @@ export const Check = styled.div<{ isvisible: boolean }>`
   position: fixed;
   top: 0;
   right: 0;
-  width: 600px;
+  width: 30%;
   height: 100%;
   background: #0f52ba;
   z-index: 10000;

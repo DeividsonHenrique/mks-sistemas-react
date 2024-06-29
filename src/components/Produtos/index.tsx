@@ -2,7 +2,7 @@
 /* eslint-disable no-empty-pattern */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { useEffect, useState } from "react";
-import { Card, PhotoDiv, Image, Info, Description, Btn } from "./styles";
+import { SectionP, Wrapper, Card, PhotoDiv, Image, Info, Description, Btn } from "./styles";
 
 function Produtos({onAddToCart}: any) {
   const [products, setProducts] = useState([]);
@@ -22,6 +22,8 @@ function Produtos({onAddToCart}: any) {
 
   return (
     <>
+    <SectionP>
+      <Wrapper>
       {products.map((product: any) => (
         <Card key={product.id} >
           <PhotoDiv>
@@ -35,6 +37,8 @@ function Produtos({onAddToCart}: any) {
           <Btn onClick={() => onAddToCart(product)}>Comprar</Btn>
         </Card>
       ))}
+      </Wrapper>
+      </SectionP>
     </>
   );
 }

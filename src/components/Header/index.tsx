@@ -1,9 +1,13 @@
 import {CartDiv, Head, Logo, CartIcon} from "./styles"
 
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-function Header({onCartClick}: any) {
-    return(
+interface HeaderProps {
+    onCartClick: () => void;
+    cartCount: number;
+  }
+  
+  const Header: React.FC<HeaderProps> = ({ onCartClick, cartCount }) => {
+    return (
         <>
             <Head>
                 <Logo>
@@ -12,7 +16,7 @@ function Header({onCartClick}: any) {
                 </Logo>
                 <CartDiv onClick={onCartClick}>
                     <CartIcon />
-                    <input type="button" value="0" />
+                    <input type="button" value={cartCount} readOnly />
                 </CartDiv>
             </Head>            
         </>

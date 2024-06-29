@@ -1,6 +1,30 @@
 import styled from "styled-components";
 
+
+export const SectionP = styled.div`
+    width: 100%;
+    min-height: 100vh;
+    max-width: 1920px;
+    flex-wrap: wrap;
+`
+
+export const Wrapper = styled.div`
+    min-height: 90vh;
+    max-width: 1100px;
+    width: 100%;
+    margin: 0 auto;
+    columns: 4;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 20px;
+    padding-top: 150px;
+
+`
+
 export const Card = styled.div`
+
     position: relative;
     height: 300px;
     width: 250px;

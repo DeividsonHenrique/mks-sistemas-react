@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import Header from './components/Header';
 import CheckOut from './components/CheckOut';
 import Produtos from './components/Produtos';
+import Footer from './components/Footer';
 
 interface Product {
   id: number;
@@ -51,20 +52,32 @@ const App: React.FC = () => {
     ));
   };
 
+  const calculoTotal = () => {
+    return cartItems.reduce((acc, item) => acc + item.price * item.quantity, 0);
+  }
+
+  const calcularCartCount = () => {
+    return cartItems.reduce((acc, item) => acc + item.quantity, 0);
+  }
+
+  const total = calculoTotal();
+  const cartCount = calcularCartCount();
 
   return (
-    <div>
-      <Header onCartClick={handleCartClick} />
+    <>
+      <Header onCartClick={handleCartClick} cartCount={cartCount} />
       <Produtos onAddToCart={handleAddToCart} />
-      <CheckOut
-        isvisible={isCheckoutVisible}
-        onClose={handleCloseClick}
-        cartItems={cartItems}
-        onRemoveItem={handleRemoveItem}
-        onIncrementQuantity={handleIncrementQuantity}
-        onDecrementQuantity={handleDecrementQuantity}
-      />
-    </div>
+        <CheckOut
+          isvisible={isCheckoutVisible}
+          onClose={handleCloseClick}
+          cartItems={cartItems}
+          onRemoveItem={handleRemoveItem}
+          onIncrementQuantity={handleIncrementQuantity}
+          onDecrementQuantity={handleDecrementQuantity}
+          total={total}
+        />
+        <Footer/>
+    </>
   );
 };
 
