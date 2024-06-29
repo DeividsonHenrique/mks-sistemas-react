@@ -1,14 +1,35 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { Check, Head, CloseBtn, Products, CardDiv, Empty, QuantityDiv, QuantityButton, RemoveItem, Valor, Btn} from "./styles";
 
+const formatPrice = (price: string) => {
+  return parseInt(price, 10)
+};
 
-function CheckOut({ isvisible, onClose, cartItems, onRemoveItem, onIncrementQuantity, onDecrementQuantity}: any) {
+interface Product {
+  id: number;
+  name: string;
+  image: string;
+  price: number;
+  quantity: number;
+}
 
-  const formatPrice = (price: string) => {
-    return parseInt(price, 10)
-  };
-  
+interface CheckProps {
+  isvisible: boolean;
+  onClose: () => void;
+  cartItems: Product[];
+  onRemoveItem: (id: number) => void;
+  onIncrementQuantity: (id: number) => void;
+  onDecrementQuantity: (id: number) => void;
+}
 
+const CheckOut: React.FC<CheckProps> = ({
+  isvisible,
+  onClose,
+  cartItems,
+  onRemoveItem,
+  onIncrementQuantity,
+  onDecrementQuantity,
+}) => {
   return (
     <>
       <Check isvisible={isvisible}>
@@ -46,7 +67,7 @@ function CheckOut({ isvisible, onClose, cartItems, onRemoveItem, onIncrementQuan
 
         <Valor>
           <p>Total:</p>
-          <p>R${formatPrice(cartItems.reduce((total: number, item: { price: number; quantity: number; }) => total + item.price * item.quantity, 0))}</p>
+          <p>R$</p>
         </Valor>
 
         <Btn>Finalizar Compra</Btn>

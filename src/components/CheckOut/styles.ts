@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { IoIosCloseCircle } from "react-icons/io";
 
-export const Check = styled.div`
+export const Check = styled.div<{ isvisible: boolean }>`
   position: fixed;
   top: 0;
   right: 0;
@@ -11,7 +11,7 @@ export const Check = styled.div`
   z-index: 10000;
   padding: 30px;
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-  transform: ${({ isvisible }: { isvisible: boolean }) => (isvisible ? 'translateX(0)' : 'translateX(100%)')};
+  transform: ${({ isvisible }) => (isvisible ? 'translateX(0)' : 'translateX(100%)')};
   transition: transform 0.5s ease-in-out;
 `;
 
