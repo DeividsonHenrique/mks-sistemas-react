@@ -1,7 +1,6 @@
 import { useState } from 'react'
 import './App.css'
 import CheckOut from './components/CheckOut';
-
 import Footer from './components/Footer'
 import Header from './components/Header'
 import Produtos from './components/Produtos'
@@ -51,7 +50,7 @@ function App() {
       <Header onCartClick={handleCartClick} handleCartClick={handleCartClick}/>
       <Produtos onAddToCart={handleAddToCart}/>
       <Footer/>
-      <CheckOut isVisible={isCheckoutVisible}
+      <CheckOut isvisible={isCheckoutVisible}
        onClose={handleCloseClick}
         cartItems={cartItems}
          onRemoveItem={handleRemoveItem}
