@@ -36,11 +36,11 @@ function App() {
   }
 
 
-  const handleIncrementQuantity = (id: number) => {
+  const handleIncrementQuantity = (id: never) => {
     setCartItems(cartItems.map(item => item.id === id ? {...item, quantity: item.quantity + 1} : item))
   }
 
-  const handleDecrementQuantity = (id: never) => {
+  const handleDecrementQuantity = (id: number) => {
     setCartItems(cartItems.map(item => item.id === id ? {...item, quantity: item.quantity - 1} : item))
   }
 
