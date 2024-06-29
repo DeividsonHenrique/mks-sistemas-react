@@ -67,7 +67,7 @@ const CheckOut: React.FC<CheckProps> = ({
 
         <Valor>
           <p>Total:</p>
-          <p>R$</p>
+          
         </Valor>
 
         <Btn>Finalizar Compra</Btn>
